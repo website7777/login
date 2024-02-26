@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Регистрация</title>
+</head>
+<body>
+    <label for="username">Логин:</label>
+    <input type="text" id="username">
+    <br>
+    <label for="password">Пароль:</label>
+    <input type="password" id="password">
+    <br>
+    <button onclick="register()">Зарегистрироваться</button>
+    
+    <script>
+        function register() {
+            var username = document.getElementById('username').value;
+            var password = document.getElementById('password').value;
+
+            // Формируем объект с данными пользователя
+            var userData = { username: username, password: password };
+
+            // Преобразуем объект в строку и сохраняем в localStorage
+            localStorage.setItem(username, JSON.stringify(userData));
+
+            alert('Регистрация успешна!');
+        }
+    </script>
+</body>
+</html>

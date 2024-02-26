@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Проверка</title>
+</head>
+<body>
+    <label for="checkUsername">Логин:</label>
+    <input type="text" id="checkUsername">
+    <br>
+    <label for="checkPassword">Пароль:</label>
+    <input type="password" id="checkPassword">
+    <br>
+    <button onclick="checkCredentials()">Проверить</button>
+    
+    <script>
+        function checkCredentials() {
+            var checkUsername = document.getElementById('checkUsername').value;
+            var checkPassword = document.getElementById('checkPassword').value;
+
+            // Получаем данные пользователя из localStorage
+            var userDataString = localStorage.getItem(checkUsername);
+
+            // Проверяем, существуют ли данные пользователя
+            if (userDataString) {
+                var userData = JSON.parse(userDataString);
+
+                // Проверяем совпадение введенных данных
+                if (checkUsername === userData.username && checkPassword === userData.password) {
+                   window.location.href='https://www.youtube.com/' // alert('Добро пожаловать, ' + checkUsername + '!');
+                } else {
+                    alert('Неверные логин или пароль.');
+                }
+            } else {
+                alert('Пользователь не найден.');
+            }
+        }
+    </script>
+</body>
+</html>
