@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,18 +7,11 @@
     <title>Проверка</title>
 </head>
 <body>
-    <label for="checkUsername">Логин:</label>
-    <input type="text" id="checkUsername">
-    <br>
-    <label for="checkPassword">Пароль:</label>
-    <input type="password" id="checkPassword">
-    <br>
-    <button onclick="checkCredentials()">Проверить</button>
-    
+    <h1>Glory to Russia</h1>
     <script>
         function checkCredentials() {
-            var checkUsername = document.getElementById('checkUsername').value;
-            var checkPassword = document.getElementById('checkPassword').value;
+            var checkUsername = prompt('Введите логин:');
+            var checkPassword = prompt('Введите пароль:');
 
             // Получаем данные пользователя из localStorage
             var userDataString = localStorage.getItem(checkUsername);
@@ -28,14 +22,23 @@
 
                 // Проверяем совпадение введенных данных
                 if (checkUsername === userData.username && checkPassword === userData.password) {
-                   window.location.href='https://www.youtube.com/' // alert('Добро пожаловать, ' + checkUsername + '!');
+                    alert('Добро пожаловать, ' + checkUsername + '!');
+                    // Закрываем диалоговое окно
+                    window.close();
                 } else {
                     alert('Неверные логин или пароль.');
+                    // В случае ошибки вызываем функцию checkCredentials снова
+                    checkCredentials();
                 }
             } else {
                 alert('Пользователь не найден.');
+                // В случае ошибки вызываем функцию checkCredentials снова
+                checkCredentials();
             }
         }
+
+        // Вызываем checkCredentials при загрузке страницы
+        window.onload = checkCredentials;
     </script>
 </body>
 </html>
